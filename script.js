@@ -9,8 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const savedUsername = localStorage.getItem('username');
   const savedPassword = localStorage.getItem('password');
   if (savedUsername && savedPassword) {
-    usernameInput.value = savedUsername;
-    passwordInput.value = savedPassword;
     rememberCheckbox.checked = true;
   }
 
@@ -27,4 +25,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     alert('Logged in as ' + username);
   });
+
+  if (savedUsername && savedPassword) {
+    const existingButton = document.createElement('button');
+    existingButton.id = 'existing';
+    existingButton.textContent = 'Login as existing user';
+    existingButton.addEventListener('click', function() {
+      alert('Logged in as ' + savedUsername);
+    });
+    form.appendChild(existingButton);
+  }
 });
