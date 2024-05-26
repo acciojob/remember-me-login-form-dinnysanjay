@@ -36,31 +36,3 @@ document.addEventListener('DOMContentLoaded', function() {
     form.appendChild(existingButton);
   }
 });
-describe('example to-do app', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:3000'); // Replace with your app's URL
-  });
-
-  it('Checking form', () => {
-    // Check if the form elements are present
-    cy.get('input#username').should('exist');
-    cy.get('input#password').should('exist');
-    cy.get('input#checkbox').should('exist');
-    cy.get('label[for="username"]').should('exist').and('have.text', 'Username');
-    cy.get('label[for="password"]').should('exist').and('have.text', 'Password');
-    cy.get('label[for="checkbox"]').should('exist').and('have.text', 'Remember me');
-    cy.get('input#submit').should('exist');
-  });
-
-  it('User Authentication Tests', () => {
-    // Log in with valid credentials
-    cy.get('input#username').type('your_username');
-    cy.get('input#password').type('your_password');
-    cy.get('input#checkbox').check();
-    cy.get('input#submit').click();
-
-    // Assert that the 'Login as existing user' button is displayed after login
-    cy.get('button#existing').should('exist').and('have.text', 'Login as existing user');
-  });
-});
-
