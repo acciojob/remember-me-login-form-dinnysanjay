@@ -46,6 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     alert('Logged in as ' + username);
 
     // Check for saved details after form is submitted
-    checkForSavedDetails();
+    setTimeout(checkForSavedDetails, 0);
   });
 });
