@@ -27,13 +27,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     alert('Logged in as ' + username);
   });
-
-  const existingButton = document.getElementById('existing');
-  if (savedUsername && savedPassword) {
-    existingButton.style.display = 'block';
-  }
-
-  existingButton.addEventListener('click', function() {
-    alert('Logged in as ' + savedUsername);
-  });
 });
