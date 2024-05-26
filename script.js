@@ -9,15 +9,23 @@ document.addEventListener('DOMContentLoaded', function() {
   function checkForSavedDetails() {
     const savedUsername = localStorage.getItem('username');
     const savedPassword = localStorage.getItem('password');
+    const existingButton = document.getElementById('existing');
     if (savedUsername && savedPassword) {
       rememberCheckbox.checked = true;
-      const existingButton = document.createElement('button');
-      existingButton.id = 'existing';
-      existingButton.textContent = 'Login as existing user';
-      existingButton.addEventListener('click', function() {
-        alert('Logged in as ' + savedUsername);
-      });
-      form.appendChild(existingButton);
+      if (!existingButton) {
+        const newButton = document.createElement('button');
+        newButton.id = 'existing';
+        newButton.textContent = 'Login as existing user';
+        newButton.addEventListener('click', function() {
+          alert('Logged in as ' + savedUsername);
+        });
+        form.appendChild(newButton);
+      }
+    } else {
+      rememberCheckbox.checked = false;
+      if (existingButton) {
+        form.removeChild(existingButton);
+      }
     }
   }
 
