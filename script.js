@@ -5,12 +5,24 @@ document.addEventListener('DOMContentLoaded', function() {
   const passwordInput = document.getElementById('password');
   const rememberCheckbox = document.getElementById('checkbox');
 
-  // Check if there are saved credentials
-  const savedUsername = localStorage.getItem('username');
-  const savedPassword = localStorage.getItem('password');
-  if (savedUsername && savedPassword) {
-    rememberCheckbox.checked = true;
+  // Function to check for saved details and append button
+  function checkForSavedDetails() {
+    const savedUsername = localStorage.getItem('username');
+    const savedPassword = localStorage.getItem('password');
+    if (savedUsername && savedPassword) {
+      rememberCheckbox.checked = true;
+      const existingButton = document.createElement('button');
+      existingButton.id = 'existing';
+      existingButton.textContent = 'Login as existing user';
+      existingButton.addEventListener('click', function() {
+        alert('Logged in as ' + savedUsername);
+      });
+      form.appendChild(existingButton);
+    }
   }
+
+  // Check for saved details when page loads
+  checkForSavedDetails();
 
   form.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -24,15 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.removeItem('password');
     }
     alert('Logged in as ' + username);
-  });
 
-  if (savedUsername && savedPassword) {
-    const existingButton = document.createElement('button');
-    existingButton.id = 'existing';
-    existingButton.textContent = 'Login as existing user';
-    existingButton.addEventListener('click', function() {
-      alert('Logged in as ' + savedUsername);
-    });
-    form.appendChild(existingButton);
-  }
+    // Check for saved details after form is submitted
+    checkForSavedDetails();
+  });
 });
